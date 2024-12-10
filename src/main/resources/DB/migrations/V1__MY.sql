@@ -1,0 +1,8 @@
+
+CREATE TABLE trabalhadores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    funcao VARCHAR(50) NOT NULL,
+    salario DECIMAL(10, 2) NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
