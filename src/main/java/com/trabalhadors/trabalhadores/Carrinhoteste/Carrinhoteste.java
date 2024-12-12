@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
+
 @Entity(name = "carrinho")
 @Table(name="carrinho")
 @Getter
@@ -19,11 +22,11 @@ public class Carrinhoteste {
 
         private String imagem;
         private String name;
-        private int price;
+        private BigDecimal price;
         private int quantity;
 
         // Construtor
-        public Carrinhoteste(Long id, String imagem, String name, int price, int quantity) {
+        public Carrinhoteste(Long id, String imagem, String name, BigDecimal price, int quantity) {
             this.id = id;
             this.imagem = imagem;
             this.name = name;
@@ -67,15 +70,16 @@ public class Carrinhoteste {
             this.name = name;
         }
 
-        public int getPrice() {
-            return price;
-        }
 
-        public void setPrice(int price) {
-            this.price = price;
-        }
+    public BigDecimal getPrice() {
+        return price;
+    }
 
-        public int getQuantity() {
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
             return quantity;
         }
 
