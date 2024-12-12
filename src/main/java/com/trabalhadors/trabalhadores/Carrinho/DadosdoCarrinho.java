@@ -7,5 +7,6 @@ public record DadosdoCarrinho(
         @NotBlank String name,
         @NotNull Integer price,
         @NotBlank String imagem,
-        @NotNull Integer quantity) {
+        @NotNull Integer quantity,
+         Integer productid) {
 }

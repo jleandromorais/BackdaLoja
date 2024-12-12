@@ -1,64 +1,48 @@
 package com.trabalhadors.trabalhadores.Carrinho;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 @Entity(name = "Carrinho")
-@Table(name="carrinho")
+@Table(name = "carrinho")
 @Getter
 @Setter
 @AllArgsConstructor
+
 public class Carrinho {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração automática do ID
-    private Long id;
-    private String name;
-    private Integer price;
-    private  String imagem;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer productid;
+
     private Integer quantity;
 
-    public Long getId() {
-        return id;
-    }
+    @Version
+    private Integer version;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Carrinho() {
-    }
-
-    public Carrinho(String imagem, Integer quantity, Integer price, String name) {
-        this.imagem = imagem;
-        this.quantity = quantity;
-        this.price = price;
-        this.name = name;
-    }
-
-
+    private String name;
+    private Integer price;
+    private String imagem;
 
     public Carrinho(DadosdoCarrinho dadosDoCarrinho) {
         this.name = dadosDoCarrinho.name();
         this.price = dadosDoCarrinho.price();
         this.imagem = dadosDoCarrinho.imagem();
         this.quantity = dadosDoCarrinho.quantity();
+        this.productid = dadosDoCarrinho.productid();
     }
 
-    public String getImagem() {
-        return imagem;
+    public Integer getVersion() {
+        return version;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public Carrinho() {
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public Integer getQuantity() {
@@ -69,6 +53,22 @@ public class Carrinho {
         this.quantity = quantity;
     }
 
+    public Integer getProductid() {
+        return productid;
+    }
+
+    public void setProductid(Integer productid) {
+        this.productid = productid;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     public String getName() {
         return name;
     }
@@ -77,5 +77,20 @@ public class Carrinho {
         this.name = name;
     }
 
+    public String getImagem() {
+        return imagem;
+    }
 
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public void atualizarInformacoes(@Valid AtualizarDadosdoCarrinho dados) {
+        if (dados.quantity() != null) {
+            this.quantity = dados.quantity();
+        }
+        if (dados.price() != null) {
+            this.price = dados.price();
+        }
+    }
 }
