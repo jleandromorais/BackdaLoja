@@ -1,7 +1,8 @@
 CREATE TABLE carrinho (
-    id INT AUTO_INCREMENT PRIMARY KEY,  -- Coluna para o ID, com incremento automático
-    name VARCHAR(255) NOT NULL,         -- Nome do item, não pode ser nulo
-    price INT NOT NULL,                 -- Preço do item, não pode ser nulo
-    imagem VARCHAR(255) NOT NULL,       -- Caminho da imagem do item, não pode ser nulo
-    quantity INT NOT NULL               -- Quantidade do item, não pode ser nulo
+    productid INT PRIMARY KEY, -- Chave primária
+    quantity INT NOT NULL, -- Quantidade do produto
+    price INT NOT NULL, -- Preço do produto
+    name VARCHAR(255) NOT NULL, -- Nome do produto
+    imagem VARCHAR(255) NOT NULL, -- URL da imagem
+    version INT DEFAULT 0 -- Controle de versão para concorrência
 );

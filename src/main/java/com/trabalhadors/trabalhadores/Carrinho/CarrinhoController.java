@@ -1,5 +1,5 @@
 package com.trabalhadors.trabalhadores.Carrinho;
-
+/*
 import com.trabalhadors.trabalhadores.Trabalahdores.DadosAtualizarDados;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -35,7 +35,11 @@ public class CarrinhoController {
                     existingCarrinho.setPrice(existingCarrinho.getPrice() + dadosdoCarrinho.price());
                     return existingCarrinho;
                 })
-                .orElseGet(() -> new Carrinho(dadosdoCarrinho));
+                .orElseGet(() -> {
+                    Carrinho novoCarrinho = new Carrinho(dadosdoCarrinho);
+                    novoCarrinho.setVersion(0); // Inicializa o campo version
+                    return novoCarrinho;
+                });
 
         // Salva o carrinho no banco de dados
         Carrinho managedCarrinho = repository.save(carrinho);
@@ -163,7 +167,7 @@ public class CarrinhoController {
 
 }
 
-
+*/
 
 
 

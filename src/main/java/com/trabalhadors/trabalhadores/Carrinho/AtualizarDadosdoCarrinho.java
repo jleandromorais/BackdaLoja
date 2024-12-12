@@ -3,7 +3,7 @@ package com.trabalhadors.trabalhadores.Carrinho;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-
+/*
 public record AtualizarDadosdoCarrinho(
 
         @NotBlank String name,
@@ -16,3 +16,5 @@ public record AtualizarDadosdoCarrinho(
         this(carrinhoo.getName(), carrinhoo.getQuantity(), carrinhoo.getPrice(), carrinhoo.getImagem(), carrinhoo.getProductid());
     }
 }
+*/
+

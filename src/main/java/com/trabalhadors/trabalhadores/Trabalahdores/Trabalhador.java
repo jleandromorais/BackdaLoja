@@ -23,6 +23,7 @@ public class Trabalhador {
     }
 
 
+
     public boolean isAtivo() {
         return ativo;
     }
