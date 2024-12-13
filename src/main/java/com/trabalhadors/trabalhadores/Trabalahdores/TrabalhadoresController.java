@@ -38,13 +38,17 @@ public class TrabalhadoresController {
 
     @PutMapping("/{id}")
     @Transactional
-    public  ResponseEntity<DadosAtualizarDados> atulizar(@RequestBody @Valid DadosAtualizarDados dados){
-        var trabalhador= trabalhadorRepository.getReferenceById(dados.id());
+    public ResponseEntity<DadosAtualizarDados> atulizar(@PathVariable long id, @RequestBody @Valid DadosAtualizarDados dados){
+        // Busca o trabalhador com o id vindo da URL
+        var trabalhador = trabalhadorRepository.getReferenceById(id);
+
+        // Atualiza as informações com os dados passados no corpo da requisição
         trabalhador.atualizarInformacoes(dados);
 
-        return ResponseEntity.ok(new DadosAtualizarDados(trabalhador)); // Retorna 404 se o remedio não for encontrado
-
+        // Retorna a resposta com as informações atualizadas
+        return ResponseEntity.ok(new DadosAtualizarDados(trabalhador));
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarFUncionario(@PathVariable Long id) {
         if (trabalhadorRepository.existsById(id)) {
