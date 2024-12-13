@@ -3,15 +3,12 @@ package com.trabalhadors.trabalhadores.Carrinhoteste;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.BigDecimal;
 import java.util.Optional;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/carrinho")
 public class CarrinhoTesteController {
@@ -22,6 +19,7 @@ public class CarrinhoTesteController {
     public CarrinhoTesteController(CarrinhoTesteRepository carrinhoTesteRepository) {
         this.carrinhoTesteRepository = carrinhoTesteRepository;
     }
+
     @PostMapping
     @Transactional
     public ResponseEntity<DadosDoCarrinho> cadastrarTrabalhador(@RequestBody DadosDoCarrinho dados, UriComponentsBuilder uriBuilder) {
@@ -62,5 +60,16 @@ public class CarrinhoTesteController {
         return ResponseEntity.created(uri).body(new DadosDoCarrinho(carrinhoteste));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarFUncionario(@PathVariable Long id) {
+        if (carrinhoTesteRepository.existsById(id)) {
+            carrinhoTesteRepository.deleteById(id);
+            return ResponseEntity.noContent().build(); // Retorna 204 (sem conteúdo)
+        } else {
+            return ResponseEntity.notFound().build(); // Retorna 404 se o remedio não for encontrado
+
+        }
+
+    }
 }
 
